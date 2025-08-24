@@ -1,6 +1,13 @@
 import streamlit as st
 
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
+import generator
+
+st.title("🎈 Japanese sentence generator")
+word = st.text_input(
+    "Enter your word 👇",
 )
+
+if word:
+    st.write(f"You entered: {word}. Generating sentence...")
+    sentence = generator.generate_sentence(word)
+    st.write(sentence)
