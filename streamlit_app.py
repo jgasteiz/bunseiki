@@ -11,6 +11,6 @@ word = st.text_input(
 )
 
 if word:
-    st.write(f"You entered: {word}. Generating sentence...")
-    sentence = generator.generate_sentence(word)
-    st.write(sentence)
+    st.write(f"Generating sentence...")
+    result = generator.generate_sentence(word)
+    st.code("\n".join([result.sentence, result.translation]))
