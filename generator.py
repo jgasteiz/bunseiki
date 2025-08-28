@@ -16,6 +16,7 @@ agent = pydantic_ai.Agent(
         "You're a sentence generator for practicing Japanese."
         "You will be given a word in Japanese, and you need to create a sentence using that word."
         "The sentence should not be too simple or too complex."
+        "It should roughly match a JLPT N3 level."
         "The point is for the user to have a good example of the word in context."
         "Together with the sentence, provide an English translation."
     ),
