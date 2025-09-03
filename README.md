@@ -41,6 +41,10 @@ A Streamlit web application that generates contextual Japanese sentences for lan
    ```bash
    streamlit run streamlit_app.py
    ```
+   Or run it passing the env variable directly:
+   ```bash
+   OPENAI_API_KEY="your_openai_api_key" streamlit run streamlit_app.py
+   ```
 
 ## Dependencies
 
