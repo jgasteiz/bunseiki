@@ -60,4 +60,16 @@ A Streamlit web application that generates contextual Japanese sentences for lan
 
 ---
 
+## Screenshots
+
+Below are screenshots of the Bunseiki app in action:
+
+**Main Interface**
+
+![Bunseiki Screenshot 1](images/bunseiki-1.png)
+
+**Example Output**
+
+![Bunseiki Screenshot 2](images/bunseiki-2.png)
+
 *Bunseiki (文析) - Helping you understand Japanese sentences in context*
