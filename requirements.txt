@@ -1,2 +1,4 @@
 streamlit
-pydantic-ai
+pydantic-ai==1.0.3
+python-dotenv==1.1.1
+watchdog

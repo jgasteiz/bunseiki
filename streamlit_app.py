@@ -1,5 +1,9 @@
+import dotenv
+
+dotenv.load_dotenv()
+
 import streamlit as st
-import generator
+
 
 # --- Page config ---
 st.set_page_config(page_title="Bunseiki", page_icon="📝", layout="centered")
@@ -20,6 +24,8 @@ st.sidebar.markdown(
 
 # --- Main App ---
 def main():
+    import generator
+
     st.title("Bunseiki - Japanese Sentence Generator 📝")
     st.markdown("Enter a Japanese word to get a contextual example sentence.")
 
