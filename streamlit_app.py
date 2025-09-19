@@ -136,10 +136,16 @@ def main():
     st.title("Bunseiki - Japanese Sentence Generator 📝")
     st.markdown("Enter a Japanese word to get a contextual example sentence.")
 
+    # Initialize session state for text input
+    if "text_input" not in st.session_state:
+        st.session_state.text_input = ""
+
     word = st.text_input(
-        "Enter your word 👇", 
+        "Enter your word 👇",
+        value=st.session_state.text_input,
         placeholder="e.g. 勉強 (study)",
-        help="Type a Japanese word (kanji, kana, or romaji)"
+        help="Type a Japanese word (kanji, kana, or romaji)",
+        key="word_input"
     )
 
     if word:
@@ -153,6 +159,8 @@ def main():
                 create_japanese_tts_display(result.sentence)
                 st.markdown("**Translation:**")
                 st.code(result.translation, language="en")
+                # Clear the text input after successful generation
+                st.session_state.text_input = ""
             except Exception as e:
                 st.error(f"❌ Failed to generate sentence: {e}")
                 st.info("Try a different word or check your connection.")
