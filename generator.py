@@ -10,7 +10,7 @@ class OutputType:
 
 
 agent = pydantic_ai.Agent(
-    model="openai:gpt-4.1",
+    model="anthropic:claude-sonnet-4-5-20250929",
     output_type=OutputType,
     instructions=(
         "You're a sentence generator for practicing Japanese."
