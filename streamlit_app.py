@@ -24,6 +24,64 @@ st.sidebar.markdown(
     """
 )
 
+def create_copy_button(text, label="Copy"):
+    """
+    Create a copy button that copies text to clipboard on click
+    """
+    button_id = f"copy_{abs(hash(text)) % 10000}"
+
+    html_code = f"""
+    <html>
+        <body style="margin: 0;">
+            <button id="btn_{button_id}" onclick="copyText_{button_id}()"
+                    style="background: linear-gradient(45deg, #4CAF50, #45a049);
+                           color: white;
+                           border: none;
+                           padding: 6px 12px;
+                           border-radius: 4px;
+                           cursor: pointer;
+                           font-size: 12px;
+                           transition: all 0.2s ease;
+                           margin: 4px 0;">
+                📋 {label}
+            </button>
+        </body>
+    </html>
+
+    <script>
+    function copyText_{button_id}() {{
+        const text = `{text}`;
+        const button = document.getElementById('btn_{button_id}');
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {{
+            navigator.clipboard.writeText(text)
+                .then(() => {{
+                    console.log('Copied to clipboard');
+                    button.style.background = 'linear-gradient(45deg, #2196F3, #1976D2)';
+                    button.innerHTML = '✓ Copied!';
+                    setTimeout(() => {{
+                        button.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+                        button.innerHTML = '📋 {label}';
+                    }}, 2000);
+                }})
+                .catch(err => {{
+                    console.error('Failed to copy:', err);
+                    button.style.background = 'linear-gradient(45deg, #f44336, #d32f2f)';
+                    button.innerHTML = '❌ Failed';
+                    setTimeout(() => {{
+                        button.style.background = 'linear-gradient(45deg, #4CAF50, #45a049)';
+                        button.innerHTML = '📋 {label}';
+                    }}, 2000);
+                }});
+        }} else {{
+            alert('Clipboard access not supported in this browser');
+        }}
+    }}
+    </script>
+    """
+
+    v1_components.html(html_code, height=35)
+
 def create_japanese_tts_display(text):
     """
     Create a display component for Japanese text with TTS play button
@@ -155,10 +213,17 @@ def main():
                 st.success("Here's your example:")
                 st.markdown("**Sentence:**")
                 st.code(result.sentence, language="ja")
-                # Add TTS
-                create_japanese_tts_display(result.sentence)
+                # Add TTS and copy button side by side
+                col1, col2 = st.columns([1, 4])
+                with col1:
+                    create_japanese_tts_display(result.sentence)
+                with col2:
+                    create_copy_button(result.sentence, "Copy Sentence")
+
                 st.markdown("**Translation:**")
                 st.code(result.translation, language="en")
+                create_copy_button(result.translation, "Copy Translation")
+
                 # Clear the text input after successful generation
                 st.session_state.text_input = ""
             except Exception as e:
