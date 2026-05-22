@@ -1,5 +1,0 @@
-streamlit
-pydantic-ai[anthropic]==1.0.15
-anthropic>=0.49.0
-python-dotenv==1.1.1
-watchdog

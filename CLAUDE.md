@@ -10,7 +10,8 @@ Bunseiki is a Japanese sentence generator Streamlit web application that creates
 
 - **streamlit_app.py**: Main Streamlit application with UI, session state management, and browser-based TTS functionality using Web Speech API
 - **generator.py**: Core AI sentence generation using pydantic-ai agent framework with structured dataclass outputs
-- **requirements.txt**: Python dependencies (streamlit, pydantic-ai==1.0.3, python-dotenv==1.1.1, watchdog)
+- **pyproject.toml**: Project metadata and Python dependencies managed with uv
+- **uv.lock**: Locked dependency versions for reproducible installs
 - **.streamlit/config.toml**: Streamlit configuration with dark theme settings
 - **plans/**: Contains improvement plans for the generator module
 
@@ -23,18 +24,18 @@ The app follows a simple two-layer architecture:
 ### Setup and Running
 ```bash
 # Install dependencies
-pip install -r requirements.txt
+uv sync
 
 # Run the application
-streamlit run streamlit_app.py
+uv run streamlit run streamlit_app.py
 
 # Run with environment variable (if not using .env file)
-OPENAI_API_KEY="your_key" streamlit run streamlit_app.py
+ANTHROPIC_API_KEY="your_key" uv run streamlit run streamlit_app.py
 ```
 
 ### Environment Setup
-- Copy `.env.example` to `.env` and add your OpenAI API key
-- Requires OpenAI API access for GPT-4.1
+- Copy `.env.example` to `.env` and add your Anthropic API key
+- Requires Anthropic API access for Claude
 - The app uses `python-dotenv` to automatically load environment variables
 
 ## Key Technical Details
