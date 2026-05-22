@@ -5,7 +5,7 @@ description = "Japanese sentence generator for language learning"
 requires-python = ">=3.14"
 dependencies = [
     "streamlit",
-    "pydantic-ai==1.0.15",
+    "pydantic-ai>=1.101.0",
     "anthropic>=0.49.0",
     "python-dotenv==1.1.1",
     "watchdog",
