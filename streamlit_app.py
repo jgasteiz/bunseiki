@@ -189,6 +189,7 @@ def create_japanese_tts_display(text):
 
 # --- Main App ---
 def main():
+    import analyser
     import generator
 
     st.title("Bunseiki - Japanese Sentence Generator 📝")
@@ -229,6 +230,39 @@ def main():
             except Exception as e:
                 st.error(f"❌ Failed to generate sentence: {e}")
                 st.info("Try a different word or check your connection.")
+        st.divider()
+
+    st.divider()
+    st.subheader("Grammar Analyser 🔍")
+    st.markdown("Enter a Japanese sentence to analyse its main grammar point.")
+
+    if "sentence_input" not in st.session_state:
+        st.session_state.sentence_input = ""
+
+    sentence = st.text_input(
+        "Enter your sentence 👇",
+        value=st.session_state.sentence_input,
+        placeholder="e.g. 毎日勉強しても、なかなか上手くならない。",
+        help="Paste a Japanese sentence to analyse",
+        key="sentence_input_widget"
+    )
+
+    if sentence:
+        with st.spinner("Analysing sentence..."):
+            try:
+                result = analyser.analyse_sentence(sentence)
+                st.success("Grammar analysis:")
+                st.markdown(f"**Grammar point:** `{result.grammar_point}`")
+                st.markdown(result.explanation)
+                st.markdown("**Examples:**")
+                for example in result.examples:
+                    st.code(example.sentence, language="ja")
+                    st.markdown(example.translation)
+
+                st.session_state.sentence_input = ""
+            except Exception as e:
+                st.error(f"❌ Failed to analyse sentence: {e}")
+                st.info("Try a different sentence or check your connection.")
         st.divider()
 
     st.caption("Made with ❤️ by Bunseiki. [Source](https://github.com/jgasteiz/bunseiki)")
