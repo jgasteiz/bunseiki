@@ -2,7 +2,7 @@
 name = "bunseiki"
 version = "0.1.0"
 description = "Japanese sentence generator for language learning"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
     "streamlit",
     "pydantic-ai==1.0.15",
