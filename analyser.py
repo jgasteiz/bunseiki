@@ -22,9 +22,9 @@ agent = pydantic_ai.Agent(
     instructions=(
         "You are a Japanese grammar analyser for language learners."
         " You will be given a Japanese sentence."
-        " Identify the single most relevant or most complex grammar point in the sentence."
-        " Focus on patterns that would be most useful for a JLPT N3 learner to understand."
-        " Provide a concise explanation of the grammar point in English."
+        " Identify the couple most relevant or most complex grammar point in the sentence."
+        " Focus on patterns that would be most useful for a JLPT N3 or N2 learner to understand."
+        " Provide a concise explanation of the grammar points in English."
         " Give 2-3 short alternative example sentences using the same grammar point,"
         " each with an English translation."
         " Do not give a full grammatical breakdown — focus only on the one key grammar point."
